@@ -103,14 +103,6 @@ class AxleVppDevice extends Device {
     await this._poller.poll();
   }
 
-  async setOptOut() {
-    this.log('Opt-out requested — pending Axle API support');
-  }
-
-  async logEventNote(note) {
-    this.log(`Event note: ${note}`);
-  }
-
   // ─── Data callbacks from AxlePoller ───────────────────────────────────────
 
   /**

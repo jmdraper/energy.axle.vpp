@@ -34,13 +34,6 @@ class AxleVppDriver extends Driver {
       .getActionCard('force_poll')
       .registerRunListener(async (args) => args.device.forcePoll());
 
-    this.homey.flow
-      .getActionCard('set_opt_out')
-      .registerRunListener(async (args) => args.device.setOptOut());
-
-    this.homey.flow
-      .getActionCard('log_event_note')
-      .registerRunListener(async (args) => args.device.logEventNote(args.note));
   }
 
   // ─── Pairing ──────────────────────────────────────────────────────────────

@@ -18,7 +18,7 @@
       "title": { "en": "Energy Exported" }
     }
   },
-  "platforms": ["local", "cloud"],
+  "platforms": ["local"],
   "connectivity": ["cloud"],
   "images": {
     "small":  "./drivers/axle_vpp_account/assets/images/small.png",

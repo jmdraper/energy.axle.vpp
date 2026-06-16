@@ -72,7 +72,7 @@
       {
         "id": "grid_event_dispatched",
         "title": {
-          "en": "A grid event has been dispatched"
+          "en": "A grid event has been announced"
         },
         "tokens": [
           {
@@ -98,6 +98,13 @@
               "en": "Duration (min)"
             },
             "example": 60
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
           }
         ]
       },
@@ -360,42 +367,6 @@
             "type": "device",
             "name": "device",
             "filter": "driver_id=axle_vpp_account"
-          }
-        ]
-      },
-      {
-        "id": "set_opt_out",
-        "title": {
-          "en": "Opt out of the next grid event"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=axle_vpp_account"
-          }
-        ]
-      },
-      {
-        "id": "log_event_note",
-        "title": {
-          "en": "Add a note to this event"
-        },
-        "titleFormatted": {
-          "en": "Add a note to this event: [[note]]"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=axle_vpp_account"
-          },
-          {
-            "name": "note",
-            "type": "text",
-            "placeholder": {
-              "en": "Enter note..."
-            }
           }
         ]
       }

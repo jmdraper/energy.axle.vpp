@@ -1,6 +1,15 @@
 {
   "triggers": [
     {
+      "id": "grid_event_dispatched",
+      "title": { "en": "A grid event has been announced" },
+      "tokens": [
+        { "name": "start_time",       "type": "string", "title": { "en": "Start Time" },      "example": "18:00" },
+        { "name": "end_time",         "type": "string", "title": { "en": "End Time" },        "example": "19:00" },
+        { "name": "duration_minutes", "type": "number", "title": { "en": "Duration (min)" }, "example": 60 }
+      ]
+    },
+    {
       "id": "event_started",
       "title": { "en": "A grid event has started" },
       "highlight": true,
@@ -81,22 +90,6 @@
     {
       "id": "force_poll",
       "title": { "en": "Refresh Axle event data now" }
-    },
-    {
-      "id": "set_opt_out",
-      "title": { "en": "Opt out of the next grid event" }
-    },
-    {
-      "id": "log_event_note",
-      "title": { "en": "Add a note to this event" },
-      "titleFormatted": { "en": "Add a note to this event: [[note]]" },
-      "args": [
-        {
-          "name": "note",
-          "type": "text",
-          "placeholder": { "en": "Enter note..." }
-        }
-      ]
     }
   ]
 }
