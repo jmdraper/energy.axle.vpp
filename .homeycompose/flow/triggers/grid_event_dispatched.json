@@ -1,0 +1,9 @@
+{
+  "id": "grid_event_dispatched",
+  "title": { "en": "A grid event has been dispatched" },
+  "tokens": [
+    { "name": "start_time",       "type": "string", "title": { "en": "Start Time" },      "example": "18:00" },
+    { "name": "end_time",         "type": "string", "title": { "en": "End Time" },        "example": "19:00" },
+    { "name": "duration_minutes", "type": "number", "title": { "en": "Duration (min)" }, "example": 60 }
+  ]
+}

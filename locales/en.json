@@ -1,0 +1,16 @@
+{
+  "error": {
+    "no_token":     "No API token configured. Re-pair the device to set it.",
+    "unauthorized": "Invalid API token — check device settings.",
+    "api_error":    "Unable to reach Axle API. Will retry automatically."
+  },
+  "pair": {
+    "error_empty_token": "Please enter your API token.",
+    "error_no_token":    "No token was validated. Please complete the login step."
+  },
+  "settings": {
+    "poll_interval_normal":   "Background poll interval (minutes)",
+    "poll_interval_active":   "Pre-event/active poll interval (seconds)",
+    "pre_event_window_hours": "Fast-poll window before event (hours)"
+  }
+}

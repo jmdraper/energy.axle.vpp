@@ -1,0 +1,582 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "energy.axle.vpp",
+  "version": "1.0.0",
+  "compatibility": ">=8.0.0",
+  "sdk": 3,
+  "brandColor": "#000000",
+  "name": {
+    "en": "Axle VPP"
+  },
+  "description": {
+    "en": "Monitor and automate your Axle Energy VPP participation from Homey"
+  },
+  "tags": {
+    "en": [
+      "energy",
+      "vpp",
+      "battery",
+      "grid",
+      "flexibility",
+      "axle"
+    ]
+  },
+  "category": [
+    "energy"
+  ],
+  "permissions": [],
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "connectivity": [
+    "cloud"
+  ],
+  "author": {
+    "name": "Axle Energy",
+    "email": "support@axle.energy"
+  },
+  "homepage": "https://vpp.axle.energy",
+  "support": "https://vpp.axle.energy/support",
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "settings": [
+    {
+      "id": "debugLogging",
+      "type": "dropdown",
+      "title": {
+        "en": "Debug Logging"
+      },
+      "value": "disabled",
+      "hint": {
+        "en": "Enable verbose log output for troubleshooting."
+      },
+      "values": [
+        {
+          "id": "disabled",
+          "title": {
+            "en": "Disabled"
+          }
+        },
+        {
+          "id": "enabled",
+          "title": {
+            "en": "Enabled"
+          }
+        }
+      ]
+    }
+  ],
+  "flow": {
+    "triggers": [
+      {
+        "id": "grid_event_dispatched",
+        "title": {
+          "en": "A grid event has been dispatched"
+        },
+        "tokens": [
+          {
+            "name": "start_time",
+            "type": "string",
+            "title": {
+              "en": "Start Time"
+            },
+            "example": "18:00"
+          },
+          {
+            "name": "end_time",
+            "type": "string",
+            "title": {
+              "en": "End Time"
+            },
+            "example": "19:00"
+          },
+          {
+            "name": "duration_minutes",
+            "type": "number",
+            "title": {
+              "en": "Duration (min)"
+            },
+            "example": 60
+          }
+        ]
+      },
+      {
+        "id": "event_started",
+        "title": {
+          "en": "A grid event has started"
+        },
+        "highlight": true,
+        "tokens": [
+          {
+            "name": "duration_minutes",
+            "type": "number",
+            "title": {
+              "en": "Duration (min)"
+            },
+            "example": 30
+          },
+          {
+            "name": "export_direction",
+            "type": "string",
+            "title": {
+              "en": "Direction"
+            },
+            "example": "export"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          }
+        ]
+      },
+      {
+        "id": "event_ended",
+        "title": {
+          "en": "A grid event has ended"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          }
+        ]
+      },
+      {
+        "id": "event_upcoming_1h",
+        "title": {
+          "en": "A grid event starts within 1 hour"
+        },
+        "highlight": true,
+        "tokens": [
+          {
+            "name": "start_time",
+            "type": "string",
+            "title": {
+              "en": "Start Time"
+            },
+            "example": "18:00"
+          },
+          {
+            "name": "minutes_to_start",
+            "type": "number",
+            "title": {
+              "en": "Minutes to Start"
+            },
+            "example": 45
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          }
+        ]
+      },
+      {
+        "id": "event_upcoming_2h",
+        "title": {
+          "en": "A grid event starts within 2 hours"
+        },
+        "tokens": [
+          {
+            "name": "start_time",
+            "type": "string",
+            "title": {
+              "en": "Start Time"
+            },
+            "example": "18:00"
+          },
+          {
+            "name": "minutes_to_start",
+            "type": "number",
+            "title": {
+              "en": "Minutes to Start"
+            },
+            "example": 90
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          }
+        ]
+      },
+      {
+        "id": "event_scheduled_tomorrow",
+        "title": {
+          "en": "A grid event is scheduled for tomorrow"
+        },
+        "tokens": [
+          {
+            "name": "start_time",
+            "type": "string",
+            "title": {
+              "en": "Start Time"
+            },
+            "example": "18:00 tomorrow"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          }
+        ]
+      },
+      {
+        "id": "event_state_changed",
+        "title": {
+          "en": "Event state has changed"
+        },
+        "tokens": [
+          {
+            "name": "new_state",
+            "type": "string",
+            "title": {
+              "en": "New State"
+            },
+            "example": "in_progress"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "event_is_in_progress",
+        "title": {
+          "en": "A grid event !{{is|isn't}} in progress"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          }
+        ]
+      },
+      {
+        "id": "event_is_upcoming",
+        "title": {
+          "en": "A grid event !{{is|isn't}} upcoming today"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          }
+        ]
+      },
+      {
+        "id": "event_within_minutes",
+        "title": {
+          "en": "A grid event !{{is|isn't}} starting within [[minutes]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          },
+          {
+            "name": "minutes",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "15",
+                "label": {
+                  "en": "15 minutes"
+                }
+              },
+              {
+                "id": "30",
+                "label": {
+                  "en": "30 minutes"
+                }
+              },
+              {
+                "id": "60",
+                "label": {
+                  "en": "60 minutes"
+                }
+              },
+              {
+                "id": "90",
+                "label": {
+                  "en": "90 minutes"
+                }
+              },
+              {
+                "id": "120",
+                "label": {
+                  "en": "120 minutes"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "event_completed_today",
+        "title": {
+          "en": "A grid event has !{{been|not been}} completed today"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "force_poll",
+        "title": {
+          "en": "Refresh Axle event data now"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          }
+        ]
+      },
+      {
+        "id": "set_opt_out",
+        "title": {
+          "en": "Opt out of the next grid event"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          }
+        ]
+      },
+      {
+        "id": "log_event_note",
+        "title": {
+          "en": "Add a note to this event"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          },
+          {
+            "name": "note",
+            "type": "text",
+            "placeholder": {
+              "en": "Enter note..."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "id": "axle_vpp_account",
+      "name": {
+        "en": "Axle VPP Account"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_generic",
+        "meter_power",
+        "axle_event_state",
+        "axle_minutes_to_start",
+        "axle_minutes_remaining",
+        "axle_earnings_month"
+      ],
+      "capabilitiesOptions": {
+        "alarm_generic": {
+          "title": {
+            "en": "Grid Event Active"
+          }
+        },
+        "meter_power": {
+          "title": {
+            "en": "Energy Exported"
+          }
+        }
+      },
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/axle_vpp_account/assets/images/small.png",
+        "large": "/drivers/axle_vpp_account/assets/images/large.png",
+        "xlarge": "/drivers/axle_vpp_account/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "login_credentials"
+        }
+      ],
+      "settings": [
+        {
+          "id": "poll_interval_normal",
+          "type": "number",
+          "label": {
+            "en": "Background poll interval (minutes)"
+          },
+          "value": 10,
+          "attr": {
+            "min": 5,
+            "max": 60
+          },
+          "hint": {
+            "en": "How often to check the Axle API when no event is imminent."
+          }
+        },
+        {
+          "id": "poll_interval_active",
+          "type": "number",
+          "label": {
+            "en": "Pre-event/active poll interval (seconds)"
+          },
+          "value": 60,
+          "attr": {
+            "min": 30,
+            "max": 300
+          },
+          "hint": {
+            "en": "How often to poll during the 2 hours before and during an event."
+          }
+        },
+        {
+          "id": "pre_event_window_hours",
+          "type": "number",
+          "label": {
+            "en": "Fast-poll window before event (hours)"
+          },
+          "value": 2,
+          "attr": {
+            "min": 1,
+            "max": 6
+          },
+          "hint": {
+            "en": "How many hours before an event to switch to fast polling."
+          }
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "axle_earnings_month": {
+      "title": {
+        "en": "Estimated Monthly Earnings"
+      },
+      "icon": "/assets/capabilities/axle_earnings_month.svg",
+      "type": "number",
+      "units": {
+        "en": "GBP"
+      },
+      "decimals": 2,
+      "uiComponent": "sensor",
+      "uiQuickAction": false,
+      "insights": true,
+      "getable": true,
+      "setable": false
+    },
+    "axle_event_state": {
+      "title": {
+        "en": "Event State"
+      },
+      "icon": "/assets/capabilities/axle_event_state.svg",
+      "type": "enum",
+      "values": [
+        {
+          "id": "none",
+          "title": {
+            "en": "No Event"
+          }
+        },
+        {
+          "id": "upcoming",
+          "title": {
+            "en": "Upcoming"
+          }
+        },
+        {
+          "id": "in_progress",
+          "title": {
+            "en": "In Progress"
+          }
+        },
+        {
+          "id": "finished",
+          "title": {
+            "en": "Finished"
+          }
+        }
+      ],
+      "uiComponent": "sensor",
+      "uiQuickAction": false,
+      "insights": true,
+      "getable": true,
+      "setable": false
+    },
+    "axle_minutes_remaining": {
+      "title": {
+        "en": "Event Minutes Remaining"
+      },
+      "icon": "/assets/capabilities/axle_minutes_remaining.svg",
+      "type": "number",
+      "units": {
+        "en": "min"
+      },
+      "min": 0,
+      "uiComponent": "sensor",
+      "uiQuickAction": false,
+      "insights": true,
+      "getable": true,
+      "setable": false
+    },
+    "axle_minutes_to_start": {
+      "title": {
+        "en": "Minutes to Event Start"
+      },
+      "icon": "/assets/capabilities/axle_minutes_to_start.svg",
+      "type": "number",
+      "units": {
+        "en": "min"
+      },
+      "min": 0,
+      "uiComponent": "sensor",
+      "uiQuickAction": false,
+      "insights": true,
+      "getable": true,
+      "setable": false
+    }
+  }
+}

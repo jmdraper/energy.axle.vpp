@@ -1,0 +1,16 @@
+{
+  "title": { "en": "Event State" },
+  "icon": "/assets/capabilities/axle_event_state.svg",
+  "type": "enum",
+  "values": [
+    { "id": "none",        "title": { "en": "No Event" } },
+    { "id": "upcoming",   "title": { "en": "Upcoming" } },
+    { "id": "in_progress","title": { "en": "In Progress" } },
+    { "id": "finished",   "title": { "en": "Finished" } }
+  ],
+  "uiComponent": "sensor",
+  "uiQuickAction": false,
+  "insights": true,
+  "getable": true,
+  "setable": false
+}

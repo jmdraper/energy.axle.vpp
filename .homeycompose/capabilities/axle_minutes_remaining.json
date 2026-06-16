@@ -1,0 +1,12 @@
+{
+  "title": { "en": "Event Minutes Remaining" },
+  "icon": "/assets/capabilities/axle_minutes_remaining.svg",
+  "type": "number",
+  "units": { "en": "min" },
+  "min": 0,
+  "uiComponent": "sensor",
+  "uiQuickAction": false,
+  "insights": true,
+  "getable": true,
+  "setable": false
+}

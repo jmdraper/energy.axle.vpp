@@ -1,0 +1,13 @@
+{
+  "name": "energy.axle.vpp",
+  "version": "1.0.0",
+  "description": "Axle Energy VPP integration for Homey",
+  "main": "app.js",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  }
+}

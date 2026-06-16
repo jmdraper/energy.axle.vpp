@@ -1,0 +1,100 @@
+{
+  "triggers": [
+    {
+      "id": "event_started",
+      "title": { "en": "A grid event has started" },
+      "highlight": true,
+      "tokens": [
+        { "name": "duration_minutes", "type": "number", "title": { "en": "Duration (min)" }, "example": 30 },
+        { "name": "export_direction", "type": "string", "title": { "en": "Direction" },      "example": "export" }
+      ]
+    },
+    {
+      "id": "event_ended",
+      "title": { "en": "A grid event has ended" }
+    },
+    {
+      "id": "event_upcoming_1h",
+      "title": { "en": "A grid event starts within 1 hour" },
+      "highlight": true,
+      "tokens": [
+        { "name": "start_time",       "type": "string", "title": { "en": "Start Time" },      "example": "18:00" },
+        { "name": "minutes_to_start", "type": "number", "title": { "en": "Minutes to Start" }, "example": 45 }
+      ]
+    },
+    {
+      "id": "event_upcoming_2h",
+      "title": { "en": "A grid event starts within 2 hours" },
+      "tokens": [
+        { "name": "start_time",       "type": "string", "title": { "en": "Start Time" },      "example": "18:00" },
+        { "name": "minutes_to_start", "type": "number", "title": { "en": "Minutes to Start" }, "example": 90 }
+      ]
+    },
+    {
+      "id": "event_scheduled_tomorrow",
+      "title": { "en": "A grid event is scheduled for tomorrow" },
+      "tokens": [
+        { "name": "start_time", "type": "string", "title": { "en": "Start Time" }, "example": "18:00 tomorrow" }
+      ]
+    },
+    {
+      "id": "event_state_changed",
+      "title": { "en": "Event state has changed" },
+      "tokens": [
+        { "name": "new_state", "type": "string", "title": { "en": "New State" }, "example": "in_progress" }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "event_is_in_progress",
+      "title": { "en": "A grid event !{{is|isn't}} in progress" }
+    },
+    {
+      "id": "event_is_upcoming",
+      "title": { "en": "A grid event !{{is|isn't}} upcoming today" }
+    },
+    {
+      "id": "event_within_minutes",
+      "title": { "en": "A grid event !{{is|isn't}} starting within [[minutes]]" },
+      "args": [
+        {
+          "name": "minutes",
+          "type": "dropdown",
+          "values": [
+            { "id": "15",  "label": { "en": "15 minutes" } },
+            { "id": "30",  "label": { "en": "30 minutes" } },
+            { "id": "60",  "label": { "en": "60 minutes" } },
+            { "id": "90",  "label": { "en": "90 minutes" } },
+            { "id": "120", "label": { "en": "120 minutes" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "event_completed_today",
+      "title": { "en": "A grid event has !{{been|not been}} completed today" }
+    }
+  ],
+  "actions": [
+    {
+      "id": "force_poll",
+      "title": { "en": "Refresh Axle event data now" }
+    },
+    {
+      "id": "set_opt_out",
+      "title": { "en": "Opt out of the next grid event" }
+    },
+    {
+      "id": "log_event_note",
+      "title": { "en": "Add a note to this event" },
+      "args": [
+        {
+          "name": "note",
+          "type": "text",
+          "placeholder": { "en": "Enter note..." }
+        }
+      ]
+    }
+  ]
+}

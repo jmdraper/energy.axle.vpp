@@ -1,0 +1,59 @@
+{
+  "id": "axle_vpp_account",
+  "name": { "en": "Axle VPP Account" },
+  "class": "other",
+  "capabilities": [
+    "alarm_generic",
+    "meter_power",
+    "axle_event_state",
+    "axle_minutes_to_start",
+    "axle_minutes_remaining",
+    "axle_earnings_month"
+  ],
+  "capabilitiesOptions": {
+    "alarm_generic": {
+      "title": { "en": "Grid Event Active" }
+    },
+    "meter_power": {
+      "title": { "en": "Energy Exported" }
+    }
+  },
+  "platforms": ["local", "cloud"],
+  "connectivity": ["cloud"],
+  "images": {
+    "small":  "{{driverAssetsPath}}/images/small.png",
+    "large":  "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "pair": [
+    {
+      "id": "login_credentials"
+    }
+  ],
+  "settings": [
+    {
+      "id": "poll_interval_normal",
+      "type": "number",
+      "label": { "en": "Background poll interval (minutes)" },
+      "value": 10,
+      "attr": { "min": 5, "max": 60 },
+      "hint": { "en": "How often to check the Axle API when no event is imminent." }
+    },
+    {
+      "id": "poll_interval_active",
+      "type": "number",
+      "label": { "en": "Pre-event/active poll interval (seconds)" },
+      "value": 60,
+      "attr": { "min": 30, "max": 300 },
+      "hint": { "en": "How often to poll during the 2 hours before and during an event." }
+    },
+    {
+      "id": "pre_event_window_hours",
+      "type": "number",
+      "label": { "en": "Fast-poll window before event (hours)" },
+      "value": 2,
+      "attr": { "min": 1, "max": 6 },
+      "hint": { "en": "How many hours before an event to switch to fast polling." }
+    }
+  ]
+}

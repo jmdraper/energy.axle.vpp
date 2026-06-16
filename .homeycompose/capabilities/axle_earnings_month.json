@@ -1,0 +1,12 @@
+{
+  "title": { "en": "Estimated Monthly Earnings" },
+  "icon": "/assets/capabilities/axle_earnings_month.svg",
+  "type": "number",
+  "units": { "en": "GBP" },
+  "decimals": 2,
+  "uiComponent": "sensor",
+  "uiQuickAction": false,
+  "insights": true,
+  "getable": true,
+  "setable": false
+}

@@ -1,0 +1,12 @@
+{
+  "title": { "en": "Minutes to Event Start" },
+  "icon": "/assets/capabilities/axle_minutes_to_start.svg",
+  "type": "number",
+  "units": { "en": "min" },
+  "min": 0,
+  "uiComponent": "sensor",
+  "uiQuickAction": false,
+  "insights": true,
+  "getable": true,
+  "setable": false
+}
