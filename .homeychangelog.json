@@ -4,5 +4,8 @@
   },
   "1.0.1": {
     "en": "Trying to fix logo"
+  },
+  "1.0.2": {
+    "en": "Removed redundant flow cards"
   }
 }
