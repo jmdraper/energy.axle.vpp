@@ -57,6 +57,7 @@
     {
       "id": "event_within_minutes",
       "title": { "en": "A grid event !{{is|isn't}} starting within [[minutes]]" },
+      "titleFormatted": { "en": "A grid event !{{is|isn't}} starting within [[minutes]]" },
       "args": [
         {
           "name": "minutes",
@@ -88,6 +89,7 @@
     {
       "id": "log_event_note",
       "title": { "en": "Add a note to this event" },
+      "titleFormatted": { "en": "Add a note to this event: [[note]]" },
       "args": [
         {
           "name": "note",

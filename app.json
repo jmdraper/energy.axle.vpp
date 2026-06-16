@@ -9,7 +9,7 @@
     "en": "Axle VPP"
   },
   "description": {
-    "en": "Monitor and automate your Axle Energy VPP participation from Homey"
+    "en": "Earn from your home battery by automating responses to Axle Energy grid events."
   },
   "tags": {
     "en": [
@@ -33,10 +33,9 @@
     "cloud"
   ],
   "author": {
-    "name": "Axle Energy",
-    "email": "support@axle.energy"
+    "name": "Jonathan Draper"
   },
-  "homepage": "https://vpp.axle.energy",
+  "homepage": "https://vpp.axle.energy/landing?ref=R-KJCPDCPJ",
   "support": "https://vpp.axle.energy/support",
   "images": {
     "small": "/assets/images/small.png",
@@ -291,6 +290,9 @@
         "title": {
           "en": "A grid event !{{is|isn't}} starting within [[minutes]]"
         },
+        "titleFormatted": {
+          "en": "A grid event !{{is|isn't}} starting within [[minutes]]"
+        },
         "args": [
           {
             "type": "device",
@@ -380,6 +382,9 @@
         "id": "log_event_note",
         "title": {
           "en": "Add a note to this event"
+        },
+        "titleFormatted": {
+          "en": "Add a note to this event: [[note]]"
         },
         "args": [
           {
