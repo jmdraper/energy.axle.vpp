@@ -21,9 +21,7 @@
       "axle"
     ]
   },
-  "category": [
-    "energy"
-  ],
+  "category": "energy",
   "permissions": [],
   "platforms": [
     "local",
@@ -36,12 +34,12 @@
     "name": "Jonathan Draper",
     "email": "53_yew.valued@icloud.com"
   },
-  "homepage": "https://vpp.axle.energy/landing?ref=R-KJCPDCPJ",
+  "homepage": "https://vpp.axle.energy/landing",
   "support": "https://vpp.axle.energy/support",
   "images": {
-    "small": "/assets/images/small.png",
-    "large": "/assets/images/large.png",
-    "xlarge": "/assets/images/xlarge.png"
+    "small": "./assets/images/small.png",
+    "large": "./assets/images/large.png",
+    "xlarge": "./assets/images/xlarge.png"
   },
   "settings": [
     {
@@ -439,9 +437,9 @@
         "cloud"
       ],
       "images": {
-        "small": "/drivers/axle_vpp_account/assets/images/small.png",
-        "large": "/drivers/axle_vpp_account/assets/images/large.png",
-        "xlarge": "/drivers/axle_vpp_account/assets/images/xlarge.png"
+        "small": "./drivers/axle_vpp_account/assets/images/small.png",
+        "large": "./drivers/axle_vpp_account/assets/images/large.png",
+        "xlarge": "./drivers/axle_vpp_account/assets/images/xlarge.png"
       },
       "pair": [
         {

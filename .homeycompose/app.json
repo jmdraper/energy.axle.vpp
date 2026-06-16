@@ -13,7 +13,7 @@
   "tags": {
     "en": ["energy", "vpp", "battery", "grid", "flexibility", "axle"]
   },
-  "category": ["energy"],
+  "category": "energy",
   "permissions": [],
   "platforms": ["local", "cloud"],
   "connectivity": ["cloud"],
@@ -21,12 +21,12 @@
     "name": "Jonathan Draper",
     "email": "53_yew.valued@icloud.com"
   },
-  "homepage": "https://vpp.axle.energy/landing?ref=R-KJCPDCPJ",
+  "homepage": "https://vpp.axle.energy/landing",
   "support": "https://vpp.axle.energy/support",
   "images": {
-    "small": "/assets/images/small.png",
-    "large": "/assets/images/large.png",
-    "xlarge": "/assets/images/xlarge.png"
+    "small": "./assets/images/small.png",
+    "large": "./assets/images/large.png",
+    "xlarge": "./assets/images/xlarge.png"
   },
   "settings": [
     {
