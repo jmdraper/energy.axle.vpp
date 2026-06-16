@@ -1,6 +1,6 @@
 {
   "id": "energy.axle.vpp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=8.0.0",
   "sdk": 3,
   "brandColor": "#000000",
@@ -11,17 +11,28 @@
     "en": "Earn from your home battery by automating responses to Axle Energy grid events."
   },
   "tags": {
-    "en": ["energy", "vpp", "battery", "grid", "flexibility", "axle"]
+    "en": [
+      "energy",
+      "vpp",
+      "battery",
+      "grid",
+      "flexibility",
+      "axle"
+    ]
   },
   "category": "energy",
   "permissions": [],
-  "platforms": ["local", "cloud"],
-  "connectivity": ["cloud"],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "cloud"
+  ],
   "author": {
     "name": "Jonathan Draper",
     "email": "53_yew.valued@icloud.com"
   },
-  "homepage": "https://vpp.axle.energy/landing",
+  "homepage": "https://vpp.axle.energy/landing?ref=R-KJCPDCPJ",
   "support": "https://vpp.axle.energy/support",
   "images": {
     "small": "./assets/images/small.png",
@@ -32,12 +43,26 @@
     {
       "id": "debugLogging",
       "type": "dropdown",
-      "title": { "en": "Debug Logging" },
+      "title": {
+        "en": "Debug Logging"
+      },
       "value": "disabled",
-      "hint": { "en": "Enable verbose log output for troubleshooting." },
+      "hint": {
+        "en": "Enable verbose log output for troubleshooting."
+      },
       "values": [
-        { "id": "disabled", "title": { "en": "Disabled" } },
-        { "id": "enabled", "title": { "en": "Enabled" } }
+        {
+          "id": "disabled",
+          "title": {
+            "en": "Disabled"
+          }
+        },
+        {
+          "id": "enabled",
+          "title": {
+            "en": "Enabled"
+          }
+        }
       ]
     }
   ]
