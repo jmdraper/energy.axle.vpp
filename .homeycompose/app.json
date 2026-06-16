@@ -18,7 +18,8 @@
   "platforms": ["local", "cloud"],
   "connectivity": ["cloud"],
   "author": {
-    "name": "Jonathan Draper"
+    "name": "Jonathan Draper",
+    "email": "53_yew.valued@icloud.com"
   },
   "homepage": "https://vpp.axle.energy/landing?ref=R-KJCPDCPJ",
   "support": "https://vpp.axle.energy/support",
