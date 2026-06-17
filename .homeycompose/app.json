@@ -1,6 +1,6 @@
 {
   "id": "energy.axle.vpp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "compatibility": ">=8.0.0",
   "sdk": 3,
   "brandColor": "#000000",
@@ -38,6 +38,7 @@
     "large": "./assets/images/large.png",
     "xlarge": "./assets/images/xlarge.png"
   },
+  "homeyCommunityTopicId": 156263,
   "settings": [
     {
       "id": "debugLogging",

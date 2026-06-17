@@ -10,5 +10,8 @@
   },
   "1.0.3": {
     "en": "Removed dead support link"
+  },
+  "1.0.4": {
+    "en": "Added community topic link"
   }
 }
