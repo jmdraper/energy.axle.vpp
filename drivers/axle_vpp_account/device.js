@@ -12,6 +12,13 @@ class AxleVppDevice extends Device {
   async onInit() {
     this.log('AxleVppDevice onInit');
 
+    // Migrate away from capabilities removed in v1.0.5
+    for (const cap of ['meter_power', 'axle_earnings_month']) {
+      if (this.hasCapability(cap)) {
+        await this.removeCapability(cap);
+      }
+    }
+
     const token = this.getStoreValue('apiToken');
     if (!token) {
       await this.setUnavailable(this.homey.__('error.no_token'));
@@ -39,6 +46,7 @@ class AxleVppDevice extends Device {
     this._lastState = null;
 
     // Trigger card references (fired from device, registered in driver)
+    this._triggerGridEventDispatched = this.homey.flow.getDeviceTriggerCard('grid_event_dispatched');
     this._triggerEventStarted = this.homey.flow.getDeviceTriggerCard('event_started');
     this._triggerEventEnded = this.homey.flow.getDeviceTriggerCard('event_ended');
     this._triggerEventUpcoming1h = this.homey.flow.getDeviceTriggerCard('event_upcoming_1h');
@@ -86,7 +94,13 @@ class AxleVppDevice extends Device {
   }
 
   isEventUpcoming() {
-    return this.getCapabilityValue('axle_event_state') === 'upcoming';
+    if (this.getCapabilityValue('axle_event_state') !== 'upcoming') return false;
+    const startIso = this.getStoreValue('eventStartTime');
+    if (!startIso) return false;
+    const tz = this.homey.clock.getTimezone();
+    const startDate = new Date(startIso).toLocaleDateString('en-CA', { timeZone: tz });
+    const nowDate = new Date().toLocaleDateString('en-CA', { timeZone: tz });
+    return startDate === nowDate;
   }
 
   isEventWithinMinutes(minutes) {
@@ -151,6 +165,18 @@ class AxleVppDevice extends Device {
         .trigger(this, { new_state: newState })
         .catch(this.error.bind(this));
 
+      if (newState === 'upcoming') {
+        const durationMin = startTime && endTime
+          ? Math.round((endTime - startTime) / 60000) : 0;
+        await this._triggerGridEventDispatched
+          .trigger(this, {
+            start_time: this._fmtTime(startTime),
+            end_time: this._fmtTime(endTime),
+            duration_minutes: durationMin,
+          })
+          .catch(this.error.bind(this));
+      }
+
       if (newState === 'in_progress') {
         const durationMin = startTime && endTime
           ? Math.round((endTime - startTime) / 60000)
@@ -160,8 +186,11 @@ class AxleVppDevice extends Device {
           .catch(this.error.bind(this));
       }
 
-      if (newState === 'finished' && prevState === 'in_progress') {
-        await this._handleEventEnd(data);
+      // Fire event_ended on in_progress → finished OR in_progress → none.
+      // The API typically returns null (no event) once an event is over rather than
+      // keeping the record with a past end_time, so 'finished' may never be seen.
+      if ((newState === 'finished' || newState === 'none') && prevState === 'in_progress') {
+        await this._handleEventEnd();
       }
     }
 
@@ -207,32 +236,14 @@ class AxleVppDevice extends Device {
       await this.setCapabilityValue('axle_minutes_to_start', null).catch(this.error.bind(this));
       await this.setCapabilityValue('axle_minutes_remaining', null).catch(this.error.bind(this));
     }
-
-    if (data && typeof data.earnings_month === 'number') {
-      await this.setCapabilityValue('axle_earnings_month', data.earnings_month)
-        .catch(this.error.bind(this));
-    }
   }
 
-  async _handleEventEnd(data) {
+  async _handleEventEnd() {
     this._eventCompletedToday = true;
 
     await this._triggerEventEnded
       .trigger(this, {})
       .catch(this.error.bind(this));
-
-    const kwhExported = (data && typeof data.kwh_exported === 'number') ? data.kwh_exported : 0;
-    if (kwhExported > 0) {
-      const current = this.getStoreValue('totalKwhExported') || 0;
-      const total = parseFloat((current + kwhExported).toFixed(3));
-      await this.setStoreValue('totalKwhExported', total);
-      await this.setCapabilityValue('meter_power', total).catch(this.error.bind(this));
-    }
-
-    if (data && typeof data.earnings_month === 'number') {
-      await this.setCapabilityValue('axle_earnings_month', data.earnings_month)
-        .catch(this.error.bind(this));
-    }
   }
 
   _tickCountdowns() {

@@ -4,7 +4,6 @@
   "class": "other",
   "capabilities": [
     "alarm_generic",
-    "meter_power",
     "axle_event_state",
     "axle_minutes_to_start",
     "axle_minutes_remaining",
@@ -13,9 +12,6 @@
   "capabilitiesOptions": {
     "alarm_generic": {
       "title": { "en": "Grid Event Active" }
-    },
-    "meter_power": {
-      "title": { "en": "Energy Exported" }
     }
   },
   "platforms": ["local"],

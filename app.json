@@ -381,7 +381,6 @@
       "class": "other",
       "capabilities": [
         "alarm_generic",
-        "meter_power",
         "axle_event_state",
         "axle_minutes_to_start",
         "axle_minutes_remaining",
@@ -391,11 +390,6 @@
         "alarm_generic": {
           "title": {
             "en": "Grid Event Active"
-          }
-        },
-        "meter_power": {
-          "title": {
-            "en": "Energy Exported"
           }
         }
       },
@@ -475,9 +469,8 @@
         "en": "GBP"
       },
       "decimals": 2,
-      "uiComponent": "sensor",
-      "uiQuickAction": false,
-      "insights": true,
+      "uiComponent": null,
+      "insights": false,
       "getable": true,
       "setable": false
     },

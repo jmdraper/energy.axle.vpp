@@ -4,9 +4,8 @@
   "type": "number",
   "units": { "en": "GBP" },
   "decimals": 2,
-  "uiComponent": "sensor",
-  "uiQuickAction": false,
-  "insights": true,
+  "uiComponent": null,
+  "insights": false,
   "getable": true,
   "setable": false
 }
