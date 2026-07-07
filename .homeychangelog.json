@@ -16,5 +16,8 @@
   },
   "1.0.5": {
     "en": "Fixed new event announced and grid event ended trigger cards, removed monthly earnings and total exported not supported by Axle API."
+  },
+  "1.0.6": {
+    "en": "Added device repair option"
   }
 }
