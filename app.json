@@ -409,6 +409,11 @@
           "id": "login_credentials"
         }
       ],
+      "repair": [
+        {
+          "id": "repair_credentials"
+        }
+      ],
       "settings": [
         {
           "id": "poll_interval_normal",

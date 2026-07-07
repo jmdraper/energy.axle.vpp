@@ -73,11 +73,7 @@ class AxleVppDevice extends Device {
 
   async onSettings({ newSettings, changedKeys }) {
     if (changedKeys.includes('apiToken') && newSettings.apiToken) {
-      const token = newSettings.apiToken.trim();
-      await this.setStoreValue('apiToken', token);
-      this._client.setToken(token);
-      await this.setAvailable();
-      await this._poller.poll();
+      await this.updateApiToken(newSettings.apiToken);
       return;
     }
 
@@ -85,6 +81,18 @@ class AxleVppDevice extends Device {
     if (changedKeys.some((k) => pollKeys.includes(k))) {
       this._poller.reschedule();
     }
+  }
+
+  /**
+   * Applies a newly validated API token to a running device (called from the
+   * repair flow and from onSettings) without recreating the device.
+   */
+  async updateApiToken(token) {
+    const trimmed = token.trim();
+    await this.setStoreValue('apiToken', trimmed);
+    this._client.setToken(trimmed);
+    await this.setAvailable();
+    await this._poller.poll();
   }
 
   // ─── Public API for flow card handlers in driver.js ───────────────────────
