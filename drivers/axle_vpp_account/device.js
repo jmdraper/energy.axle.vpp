@@ -194,10 +194,11 @@ class AxleVppDevice extends Device {
           .catch(this.error.bind(this));
       }
 
-      // Fire event_ended on in_progress → finished OR in_progress → none.
-      // The API typically returns null (no event) once an event is over rather than
-      // keeping the record with a past end_time, so 'finished' may never be seen.
-      if ((newState === 'finished' || newState === 'none') && prevState === 'in_progress') {
+      // Fire event_ended on any transition away from in_progress. The API only
+      // ever reports a single event, so once one ends the very next poll can
+      // already reflect a different, later event (jumping straight to
+      // 'upcoming') rather than passing through 'finished' or 'none' first.
+      if (prevState === 'in_progress' && newState !== 'in_progress') {
         await this._handleEventEnd();
       }
     }
