@@ -98,6 +98,54 @@
               "en": "Duration (min)"
             },
             "example": 60
+          },
+          {
+            "name": "start_epoch",
+            "type": "number",
+            "title": {
+              "en": "Start (epoch ms)"
+            },
+            "example": 1789000000000
+          },
+          {
+            "name": "end_epoch",
+            "type": "number",
+            "title": {
+              "en": "End (epoch ms)"
+            },
+            "example": 1789010800000
+          },
+          {
+            "name": "minutes_to_start",
+            "type": "number",
+            "title": {
+              "en": "Minutes to Start"
+            },
+            "example": 180
+          },
+          {
+            "name": "minutes_to_end",
+            "type": "number",
+            "title": {
+              "en": "Minutes to End"
+            },
+            "example": 360
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "title": {
+              "en": "Date"
+            },
+            "example": "2026-09-13"
+          },
+          {
+            "name": "relative_date",
+            "type": "string",
+            "title": {
+              "en": "Relative Date"
+            },
+            "example": "tomorrow"
           }
         ],
         "args": [
@@ -130,6 +178,54 @@
               "en": "Direction"
             },
             "example": "export"
+          },
+          {
+            "name": "start_epoch",
+            "type": "number",
+            "title": {
+              "en": "Start (epoch ms)"
+            },
+            "example": 1789000000000
+          },
+          {
+            "name": "end_epoch",
+            "type": "number",
+            "title": {
+              "en": "End (epoch ms)"
+            },
+            "example": 1789010800000
+          },
+          {
+            "name": "minutes_to_start",
+            "type": "number",
+            "title": {
+              "en": "Minutes to Start"
+            },
+            "example": 0
+          },
+          {
+            "name": "minutes_to_end",
+            "type": "number",
+            "title": {
+              "en": "Minutes to End"
+            },
+            "example": 30
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "title": {
+              "en": "Date"
+            },
+            "example": "2026-09-13"
+          },
+          {
+            "name": "relative_date",
+            "type": "string",
+            "title": {
+              "en": "Relative Date"
+            },
+            "example": "today"
           }
         ],
         "args": [
