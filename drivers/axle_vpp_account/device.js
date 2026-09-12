@@ -3,6 +3,7 @@
 const { Device } = require('homey');
 const AxleApiClient = require('../../lib/AxleApiClient');
 const AxlePoller = require('../../lib/AxlePoller');
+const { buildEventTimeTokens } = require('../../lib/eventTimeTokens');
 
 
 class AxleVppDevice extends Device {
@@ -181,6 +182,7 @@ class AxleVppDevice extends Device {
             start_time: this._fmtTime(startTime),
             end_time: this._fmtTime(endTime),
             duration_minutes: durationMin,
+            ...buildEventTimeTokens(this.homey, startTime, endTime),
           })
           .catch(this.error.bind(this));
       }
@@ -190,7 +192,11 @@ class AxleVppDevice extends Device {
           ? Math.round((endTime - startTime) / 60000)
           : 0;
         await this._triggerEventStarted
-          .trigger(this, { duration_minutes: durationMin, export_direction: direction })
+          .trigger(this, {
+            duration_minutes: durationMin,
+            export_direction: direction,
+            ...buildEventTimeTokens(this.homey, startTime, endTime),
+          })
           .catch(this.error.bind(this));
       }
 
