@@ -27,6 +27,6 @@
     "en": "Added epoch, date and relative date tokens to the grid event announced and started triggers"
   },
   "1.0.9": {
-    "en": "Added a testing action to simulate a grid event of a given duration"
+    "en": "Added a 'Simulate a grid event' flow action so you can test your automations anytime, without waiting for a real Axle event"
   }
 }

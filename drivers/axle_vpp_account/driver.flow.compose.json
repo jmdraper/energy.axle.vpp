@@ -105,9 +105,9 @@
     },
     {
       "id": "simulate_grid_event",
-      "title": { "en": "Simulate a grid event (testing)" },
-      "titleFormatted": { "en": "Simulate a grid event lasting [[minutes]] minutes (testing)" },
-      "hint": { "en": "For testing flows only. Synthesises a temporary grid event starting 1 minute from now and lasting the given number of minutes, driving the normal announced/started/ended triggers and tokens. Pauses real Axle polling until the simulated event ends, then resumes automatically." },
+      "title": { "en": "Simulate a grid event" },
+      "titleFormatted": { "en": "Simulate a grid event lasting [[minutes]] minutes" },
+      "hint": { "en": "Test your automations without waiting for a real Axle event. Starts a simulated event 1 minute from now, lasting the given duration, and fires the exact same announced/started/ended cards and tokens a live event would — including any devices or automations wired to them. Real Axle polling pauses for the duration and resumes automatically once the simulated event ends." },
       "args": [
         {
           "name": "minutes",

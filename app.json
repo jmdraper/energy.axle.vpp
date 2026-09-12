@@ -9,7 +9,7 @@
     "en": "Axle VPP"
   },
   "description": {
-    "en": "Earn from your home battery by automating responses to Axle Energy grid events."
+    "en": "Earn from your home battery by automating responses to Axle Energy grid events. Includes a flow action to simulate a grid event, so you can build and test your automations before your first real event arrives."
   },
   "tags": {
     "en": [
@@ -469,13 +469,13 @@
       {
         "id": "simulate_grid_event",
         "title": {
-          "en": "Simulate a grid event (testing)"
+          "en": "Simulate a grid event"
         },
         "titleFormatted": {
-          "en": "Simulate a grid event lasting [[minutes]] minutes (testing)"
+          "en": "Simulate a grid event lasting [[minutes]] minutes"
         },
         "hint": {
-          "en": "For testing flows only. Synthesises a temporary grid event starting 1 minute from now and lasting the given number of minutes, driving the normal announced/started/ended triggers and tokens. Pauses real Axle polling until the simulated event ends, then resumes automatically."
+          "en": "Test your automations without waiting for a real Axle event. Starts a simulated event 1 minute from now, lasting the given duration, and fires the exact same announced/started/ended cards and tokens a live event would — including any devices or automations wired to them. Real Axle polling pauses for the duration and resumes automatically once the simulated event ends."
         },
         "args": [
           {
