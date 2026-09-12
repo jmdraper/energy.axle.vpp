@@ -70,6 +70,7 @@ class AxleVppDevice extends Device {
     this._countdownInterval && this.homey.clearInterval(this._countdownInterval);
     this._midnightTimer && this.homey.clearTimeout(this._midnightTimer);
     this._midnightInterval && this.homey.clearInterval(this._midnightInterval);
+    this._clearSimulation();
   }
 
   async onSettings({ newSettings, changedKeys }) {
@@ -124,6 +125,53 @@ class AxleVppDevice extends Device {
 
   async forcePoll() {
     await this._poller.poll();
+  }
+
+  /**
+   * Testing helper: synthesises a grid event starting 1 minute from now and
+   * lasting `minutes`, feeding it through the same onEventData() path real
+   * API data uses so the normal announced/started/ended triggers and tokens
+   * fire exactly as they would for a real event. Real polling is paused for
+   * the duration and resumes automatically once the simulated event ends.
+   */
+  async simulateGridEvent(minutes) {
+    if (!Number.isFinite(minutes) || minutes <= 0) {
+      throw new Error(this.homey.__('error.invalid_simulate_minutes'));
+    }
+
+    this._poller.stop();
+    this._clearSimulation();
+
+    const startTime = new Date(Date.now() + 60 * 1000);
+    const endTime = new Date(startTime.getTime() + minutes * 60 * 1000);
+    const simulatedData = {
+      start_time: startTime.toISOString(),
+      end_time: endTime.toISOString(),
+      import_export: 'export',
+    };
+
+    const tick = () => this.onEventData(simulatedData).catch(this.error.bind(this));
+    tick();
+    this._simulateInterval = this.homey.setInterval(tick, 15 * 1000);
+
+    const stopDelayMs = (endTime.getTime() - Date.now()) + 30 * 1000;
+    this._simulateStopTimer = this.homey.setTimeout(() => this._stopSimulation(), stopDelayMs);
+  }
+
+  _stopSimulation() {
+    this._clearSimulation();
+    this._poller.start();
+  }
+
+  _clearSimulation() {
+    if (this._simulateInterval) {
+      this.homey.clearInterval(this._simulateInterval);
+      this._simulateInterval = null;
+    }
+    if (this._simulateStopTimer) {
+      this.homey.clearTimeout(this._simulateStopTimer);
+      this._simulateStopTimer = null;
+    }
   }
 
   // ─── Data callbacks from AxlePoller ───────────────────────────────────────

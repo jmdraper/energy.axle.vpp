@@ -34,6 +34,11 @@ class AxleVppDriver extends Driver {
       .getActionCard('force_poll')
       .registerRunListener(async (args) => args.device.forcePoll());
 
+    this.homey.flow
+      .getActionCard('simulate_grid_event')
+      .registerRunListener(async (args) =>
+        args.device.simulateGridEvent(parseInt(args.minutes, 10)));
+
   }
 
   // ─── Pairing ──────────────────────────────────────────────────────────────
