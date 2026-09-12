@@ -22,5 +22,11 @@
   },
   "1.0.7": {
     "en": "Fixed: event ended now fires when another event already announced"
+  },
+  "1.0.8": {
+    "en": "Added epoch, date and relative date tokens to the grid event announced and started triggers"
+  },
+  "1.0.9": {
+    "en": "Added a 'Simulate a grid event' flow action so you can test your automations anytime, without waiting for a real Axle event"
   }
 }

@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "energy.axle.vpp",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "compatibility": ">=8.0.0",
   "sdk": 3,
   "brandColor": "#000000",
@@ -98,6 +98,54 @@
               "en": "Duration (min)"
             },
             "example": 60
+          },
+          {
+            "name": "start_epoch",
+            "type": "number",
+            "title": {
+              "en": "Start (epoch ms)"
+            },
+            "example": 1789000000000
+          },
+          {
+            "name": "end_epoch",
+            "type": "number",
+            "title": {
+              "en": "End (epoch ms)"
+            },
+            "example": 1789010800000
+          },
+          {
+            "name": "minutes_to_start",
+            "type": "number",
+            "title": {
+              "en": "Minutes to Start"
+            },
+            "example": 180
+          },
+          {
+            "name": "minutes_to_end",
+            "type": "number",
+            "title": {
+              "en": "Minutes to End"
+            },
+            "example": 360
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "title": {
+              "en": "Date"
+            },
+            "example": "2026-09-13"
+          },
+          {
+            "name": "relative_date",
+            "type": "string",
+            "title": {
+              "en": "Relative Date"
+            },
+            "example": "tomorrow"
           }
         ],
         "args": [
@@ -130,6 +178,54 @@
               "en": "Direction"
             },
             "example": "export"
+          },
+          {
+            "name": "start_epoch",
+            "type": "number",
+            "title": {
+              "en": "Start (epoch ms)"
+            },
+            "example": 1789000000000
+          },
+          {
+            "name": "end_epoch",
+            "type": "number",
+            "title": {
+              "en": "End (epoch ms)"
+            },
+            "example": 1789010800000
+          },
+          {
+            "name": "minutes_to_start",
+            "type": "number",
+            "title": {
+              "en": "Minutes to Start"
+            },
+            "example": 0
+          },
+          {
+            "name": "minutes_to_end",
+            "type": "number",
+            "title": {
+              "en": "Minutes to End"
+            },
+            "example": 30
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "title": {
+              "en": "Date"
+            },
+            "example": "2026-09-13"
+          },
+          {
+            "name": "relative_date",
+            "type": "string",
+            "title": {
+              "en": "Relative Date"
+            },
+            "example": "today"
           }
         ],
         "args": [
@@ -367,6 +463,37 @@
             "type": "device",
             "name": "device",
             "filter": "driver_id=axle_vpp_account"
+          }
+        ]
+      },
+      {
+        "id": "simulate_grid_event",
+        "title": {
+          "en": "Simulate a grid event"
+        },
+        "titleFormatted": {
+          "en": "Simulate a grid event lasting [[minutes]] minutes"
+        },
+        "hint": {
+          "en": "Test your automations without waiting for a real Axle event. Starts a simulated event 1 minute from now, lasting the given duration, and fires the exact same announced/started/ended cards and tokens a live event would — including any devices or automations wired to them. Real Axle polling pauses for the duration and resumes automatically once the simulated event ends."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=axle_vpp_account"
+          },
+          {
+            "name": "minutes",
+            "type": "number",
+            "title": {
+              "en": "Duration (minutes)"
+            },
+            "placeholder": {
+              "en": "60"
+            },
+            "min": 1,
+            "max": 1440
           }
         ]
       }

@@ -6,7 +6,13 @@
       "tokens": [
         { "name": "start_time",       "type": "string", "title": { "en": "Start Time" },      "example": "18:00" },
         { "name": "end_time",         "type": "string", "title": { "en": "End Time" },        "example": "19:00" },
-        { "name": "duration_minutes", "type": "number", "title": { "en": "Duration (min)" }, "example": 60 }
+        { "name": "duration_minutes", "type": "number", "title": { "en": "Duration (min)" }, "example": 60 },
+        { "name": "start_epoch",      "type": "number", "title": { "en": "Start (epoch ms)" }, "example": 1789000000000 },
+        { "name": "end_epoch",        "type": "number", "title": { "en": "End (epoch ms)" },   "example": 1789010800000 },
+        { "name": "minutes_to_start", "type": "number", "title": { "en": "Minutes to Start" }, "example": 180 },
+        { "name": "minutes_to_end",   "type": "number", "title": { "en": "Minutes to End" },   "example": 360 },
+        { "name": "date",             "type": "string", "title": { "en": "Date" },             "example": "2026-09-13" },
+        { "name": "relative_date",    "type": "string", "title": { "en": "Relative Date" },    "example": "tomorrow" }
       ]
     },
     {
@@ -15,7 +21,13 @@
       "highlight": true,
       "tokens": [
         { "name": "duration_minutes", "type": "number", "title": { "en": "Duration (min)" }, "example": 30 },
-        { "name": "export_direction", "type": "string", "title": { "en": "Direction" },      "example": "export" }
+        { "name": "export_direction", "type": "string", "title": { "en": "Direction" },      "example": "export" },
+        { "name": "start_epoch",      "type": "number", "title": { "en": "Start (epoch ms)" }, "example": 1789000000000 },
+        { "name": "end_epoch",        "type": "number", "title": { "en": "End (epoch ms)" },   "example": 1789010800000 },
+        { "name": "minutes_to_start", "type": "number", "title": { "en": "Minutes to Start" }, "example": 0 },
+        { "name": "minutes_to_end",   "type": "number", "title": { "en": "Minutes to End" },   "example": 30 },
+        { "name": "date",             "type": "string", "title": { "en": "Date" },             "example": "2026-09-13" },
+        { "name": "relative_date",    "type": "string", "title": { "en": "Relative Date" },    "example": "today" }
       ]
     },
     {
@@ -90,6 +102,22 @@
     {
       "id": "force_poll",
       "title": { "en": "Refresh Axle event data now" }
+    },
+    {
+      "id": "simulate_grid_event",
+      "title": { "en": "Simulate a grid event" },
+      "titleFormatted": { "en": "Simulate a grid event lasting [[minutes]] minutes" },
+      "hint": { "en": "Test your automations without waiting for a real Axle event. Starts a simulated event 1 minute from now, lasting the given duration, and fires the exact same announced/started/ended cards and tokens a live event would — including any devices or automations wired to them. Real Axle polling pauses for the duration and resumes automatically once the simulated event ends." },
+      "args": [
+        {
+          "name": "minutes",
+          "type": "number",
+          "title": { "en": "Duration (minutes)" },
+          "placeholder": { "en": "60" },
+          "min": 1,
+          "max": 1440
+        }
+      ]
     }
   ]
 }
